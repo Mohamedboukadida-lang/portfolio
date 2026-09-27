@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mohamed Boukadida — portfolio
 
-## Getting Started
+Single-page portfolio for Werkstudent and part-time backend, DevOps, and fullstack roles. Built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm i
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm lint
+pnpm build
+pnpm start
+pnpm format
+```
 
-## Learn More
+## Edit content
 
-To learn more about Next.js, take a look at the following resources:
+All copy lives in [`content/site.ts`](content/site.ts): profile, experience, education, projects, and skills.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Project shape:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```ts
+{
+  id, title, status: "shipped" | "in_progress" | "planned",
+  summary, stack, repoUrl, liveUrl, extraLinks, images, highlights
+}
+```
+
+- Set `repoUrl` when a repository exists. Leave it `null` until then.
+- Screenshots go in `public/projects/<id>/`. Add each file to that project’s `images` array with `src`, `alt`, `width`, and `height`. The page already renders whatever is in the array, including the screenshot dialog.
+- Flight Automation is `in_progress`. CI/CD Pipeline Lab is `planned`.
+
+The Resume buttons point at [`public/resume.pdf`](public/resume.pdf). Replace that file when the CV changes.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push the repository to GitHub.
+2. Import the project in [Vercel](https://vercel.com/new). Framework preset: Next.js. Package manager: pnpm. No extra build command.
+3. Set the environment variable `NEXT_PUBLIC_SITE_URL` to the production origin, for example `https://your-domain.vercel.app`. It is used for canonical URLs, Open Graph, `sitemap.xml`, and `robots.txt`. If it is unset, those URLs fall back to `http://localhost:3000`.
+4. No other environment variables are required. There is no contact backend; the contact action is a `mailto` link.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Analytics are off. Do not add a tracker unless you want one, and keep it privacy-friendly if you do.
