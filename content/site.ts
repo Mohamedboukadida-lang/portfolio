@@ -68,22 +68,22 @@ export type SkillGroup = {
 
 export const profile = {
   name: "Mohamed Boukadida",
-  headline: "Backend / Software Engineer · M.Sc. Computer Science student",
+  headline: "Backend developer · IT application management and process automation",
   heroSupport:
-    "Backend developer at MyOnCare in Munich, building APIs and containerized services, and open to Werkstudent roles in Bayern.",
+    "At MyOnCare in Munich I connect wearable health data to a digital-health platform. I am looking for a working-student role in application management, process automation, and business applications.",
   about:
-    "Master’s CS student seeking a working-student role in backend and software development. I build secure REST APIs, OAuth integrations, and containerized microservices, with Docker, CI/CD, and automated tests in the delivery path. I am especially interested in DevOps and cloud data platforms. I currently work as a backend developer at MyOnCare in Munich on a regulated digital-health platform.",
+    "Master’s Computer Science student at the University of Passau, seeking a working-student role in IT application management, process automation, and business applications. I automate build, test, and deployment, integrate external systems, monitor running services, and stabilise end-to-end data flows, in Agile teams using Jira and Confluence.",
   location: "Passau, Germany",
   locationDetail: "Open to Bayern and the Munich area, hybrid or on-site.",
   seeking:
-    "Working student (Werkstudent) or part-time roles in backend, software engineering, DevOps, or fullstack.",
+    "Working-student role in IT application management, process automation, and business applications.",
   email: "boukad01@ads.uni-passau.de",
-  phoneDisplay: "+49 163 7104998",
-  phoneHref: "tel:+491637104998",
+  phoneDisplay: "+49 179 15815119",
+  phoneHref: "tel:+4917915815119",
   linkedin: "https://www.linkedin.com/in/mouhamed-boukadida",
-  github: "https://github.com/Mrbkd11",
+  github: "https://github.com/Mohamedboukadida-lang",
   resumePath: "/resume.pdf",
-  studyStatus: "Master’s Computer Science, 4th semester, University of Passau",
+  studyStatus: "M.Sc. Computer Science, University of Passau",
 } as const;
 
 export const nav = [
@@ -107,7 +107,6 @@ export const education: EducationItem[] = [
     credential: "M.Sc. Computer Science",
     school: "University of Passau, Germany",
     dates: "Oct 2024 – Present",
-    detail: "4th semester",
   },
   {
     id: "supcom",
@@ -129,13 +128,12 @@ export const experience: ExperienceItem[] = [
     role: "Backend Developer",
     company: "MyOnCare",
     location: "Munich, Germany",
-    dates: "May 2025 – Present",
+    dates: "May 2026 – Present",
     bullets: [
-      "Backend integrations connecting patients’ wearable health devices (glucose monitors, activity trackers) to a digital health platform.",
-      "REST APIs and microservices to import, process, and store health measurements.",
-      "OAuth 2.0, consent handling, and account connect and disconnect flows.",
-      "Contributed to the patient mobile app (React, Capacitor, TypeScript).",
-      "Debugged full data flows from external providers into the platform database, using Git, Docker, code reviews, and automated tests.",
+      "Backend integrations that securely connect patients’ wearable health devices (glucose monitors, activity trackers; providers such as Abbott LibreView, Withings, and Corsano) to the digital health platform.",
+      "Debugged and stabilised the full data flow from external device providers to the platform database, using Git, Docker, code reviews, and automated tests.",
+      "Secure user authorization with OAuth 2.0, consent handling, and account connect and disconnect flows in a multi-tenant health platform.",
+      "REST APIs and microservices that import, process, and store health measurements, with the path from provider to database checked for reliability and traceability.",
     ],
   },
   {
@@ -145,9 +143,10 @@ export const experience: ExperienceItem[] = [
     location: "Tunis, Tunisia",
     dates: "Jun 2024 – Oct 2024",
     bullets: [
+      "CI/CD pipelines with GitHub Actions that automate build, test, and deployment and cut down manual release work.",
+      "Testing and monitoring of running services so regressions show up before a deploy.",
       "Backend REST APIs and data flow between microservices in production.",
-      "Dockerized services and CI/CD with GitHub Actions.",
-      "Testing and monitoring, Git workflows, and Agile delivery.",
+      "Git-based workflows, code reviews, and Agile collaboration, including new DevOps tools.",
     ],
   },
   {
@@ -157,10 +156,8 @@ export const experience: ExperienceItem[] = [
     location: "Sousse, Tunisia",
     dates: "May 2023 – Sep 2023",
     bullets: [
-      "Secure backend services for financial data processing and document automation.",
-      "JWT authentication and role-based access control.",
-      "A microservice that extracts structured data from financial documents for analytics and ML pipelines.",
-      "REST endpoints for storing and reusing extracted records.",
+      "Secure backend services for financial data processing and document-driven automation.",
+      "REST endpoints and data handling so extracted records can be stored and reused by downstream services.",
     ],
   },
 ];
@@ -257,20 +254,33 @@ export const heroImages: ProjectImage[] = [
 
 export const projects: Project[] = [
   {
+    id: "rag",
+    title: "RAG",
+    status: "in_progress",
+    summary:
+      "A retrieval-augmented generation project I am building now. There is no public repository yet, and the architecture is still in progress, so this card stays limited to that.",
+    stack: [],
+    repoUrl: null,
+    liveUrl: null,
+    extraLinks: [],
+    images: [],
+    highlights: [],
+  },
+  {
     id: "well-being",
     title: "Well-Being Application",
     status: "shipped",
     summary:
-      "A wellness platform for sleep tracking, hydration tracking, and a smart chatbot. The mobile client talks to Flask and Spring Boot microservices behind an Nginx reverse proxy, with JWT authentication.",
+      "Academic project, January to May 2024. Microservices in Flask, Spring Boot, and Flutter, with an LLM chatbot, tried by about 50 users. The mobile client reaches the APIs through an Nginx reverse proxy and JWT authentication.",
     stack: ["Flutter", "Flask", "Spring Boot", "Nginx", "JWT", "Microservices"],
-    repoUrl: "https://github.com/mrbkd11/Projet-bien-etre",
+    repoUrl: "https://github.com/Mohamedboukadida-lang/Projet-bien-etre",
     liveUrl: null,
     extraLinks: [],
     images: wellbeingImages,
     highlights: [
-      "Sleep tracking, hydration tracking, and a chatbot in one product.",
-      "Flutter client with Flask and Spring Boot services.",
-      "Nginx reverse proxy and JWT auth between the client and the APIs.",
+      "Sleep tracking, hydration tracking, and an LLM chatbot.",
+      "Flask, Spring Boot, and Flutter, with Nginx and JWT in front of the APIs.",
+      "Tried with about 50 users.",
     ],
   },
   {
@@ -280,16 +290,16 @@ export const projects: Project[] = [
     summary:
       "Find, reserve, and manage coworking spaces, with maps, profiles, ratings, and an admin flow for submitting a space. Built as a Flutter client on a Spring Boot API with PostgreSQL.",
     stack: ["Flutter", "Spring Boot", "PostgreSQL"],
-    repoUrl: "https://github.com/mrbkd11/Coworking-Hub",
+    repoUrl: "https://github.com/Mohamedboukadida-lang/Coworking-Hub",
     liveUrl: null,
     extraLinks: [
       {
         label: "Watch demo",
-        href: "https://github.com/mrbkd11/Coworking-Hub/blob/main/demo.mp4",
+        href: "https://github.com/Mohamedboukadida-lang/Coworking-Hub/blob/main/demo.mp4",
       },
       {
         label: "Download APK",
-        href: "https://github.com/mrbkd11/Coworking-Hub/blob/main/app-release.apk",
+        href: "https://github.com/Mohamedboukadida-lang/Coworking-Hub/blob/main/app-release.apk",
       },
     ],
     images: coworkingImages,
@@ -339,58 +349,66 @@ export const projects: Project[] = [
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: "languages",
-    title: "Languages",
-    items: ["Python", "Java", "C++", "TypeScript", "PHP"],
-  },
-  {
-    id: "backend",
-    title: "Backend",
+    id: "automation",
+    title: "Automation & integration",
     items: [
-      "Django",
-      "Flask",
-      "Spring Boot",
-      "Spring Security",
+      "Automation workflows",
+      "System integration",
       "REST APIs",
+      "OAuth 2.0",
       "JWT",
-      "Express.js",
-      "Laravel",
-      "Microservices",
-      "CQRS / event-driven concepts",
+      "CI/CD",
+      "GitHub Actions",
+      "Docker",
+      "Monitoring, debugging, and troubleshooting",
     ],
   },
   {
-    id: "frontend",
-    title: "Frontend & mobile",
-    items: ["React (including Capacitor)", "Angular", "Flutter"],
+    id: "languages",
+    title: "Languages",
+    items: ["Python", "SQL", "Java", "TypeScript", "C++", "PHP"],
   },
   {
     id: "data",
     title: "Data",
-    items: ["PostgreSQL", "MySQL", "MongoDB", "SQL Server", "Firebase", "NoSQL"],
-  },
-  {
-    id: "devops",
-    title: "DevOps & cloud",
-    items: ["Docker", "Kubernetes", "CI/CD", "GitHub Actions", "AWS", "Linux / virtualization"],
-  },
-  {
-    id: "practices",
-    title: "Practices",
-    items: ["Unit & integration testing", "Git", "Jira / ClickUp", "Agile / Scrum", "OOP"],
-  },
-  {
-    id: "ml",
-    title: "Machine learning",
-    note: "Supporting work, used when a project needs it.",
     items: [
-      "scikit-learn",
-      "NLP",
-      "LangChain",
-      "Prompt engineering",
-      "Model integration / serving",
+      "PostgreSQL",
+      "MySQL",
+      "SQL Server",
+      "MongoDB",
+      "Firebase",
+      "NoSQL",
       "Data preprocessing",
-      "ML pipelines",
+    ],
+  },
+  {
+    id: "tools",
+    title: "Tools & practices",
+    note: "AWS entries are coursework, not exam certifications.",
+    items: [
+      "Git",
+      "Jira",
+      "ClickUp",
+      "Confluence",
+      "Agile / Scrum",
+      "Unit testing",
+      "Integration testing",
+      "Kubernetes",
+      "AWS (coursework)",
+    ],
+  },
+  {
+    id: "also",
+    title: "Also",
+    items: [
+      "Microservices",
+      "Spring Boot",
+      "Django",
+      "Flask",
+      "Express.js",
+      "GitHub Copilot",
+      "Cursor",
+      "React Capacitor",
     ],
   },
 ];
@@ -408,6 +426,16 @@ export const credentials = [
     title: "AWS Solutions Architect Associate",
     issuer: "KodeKloud",
     dates: "Sep 2026",
+    kind: {
+      en: "Course completion certificate",
+      de: "Kursabschluss-Zertifikat",
+    },
+  },
+  {
+    id: "kodekloud-cp",
+    title: "AWS Cloud Practitioner",
+    issuer: "KodeKloud",
+    dates: "2026",
     kind: {
       en: "Course completion certificate",
       de: "Kursabschluss-Zertifikat",

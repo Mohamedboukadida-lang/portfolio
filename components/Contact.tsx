@@ -10,7 +10,8 @@ export function Contact() {
   const { locale } = useLocale();
   const { text, profile } = view(locale);
   const section = text.sections.contact;
-  const subject = locale === "de" ? "Werkstudentenstelle" : "Werkstudent role";
+  const subject =
+    locale === "de" ? "Werkstudentenstelle Anwendungsmanagement" : "Working student — application management";
   const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
 
   const channels = [
@@ -29,7 +30,13 @@ export function Contact() {
       icon: LinkedinIcon,
       external: true,
     },
-    { href: profile.github, label: "GitHub", value: "Mrbkd11", icon: GithubIcon, external: true },
+    {
+      href: profile.github,
+      label: "GitHub",
+      value: profile.github.replace("https://github.com/", ""),
+      icon: GithubIcon,
+      external: true,
+    },
   ];
 
   return (
@@ -43,7 +50,7 @@ export function Contact() {
         <div>
           <a
             href={mailto}
-            className="inline-block max-w-full font-display text-2xl tracking-tight break-all text-ink underline decoration-accent/40 decoration-2 underline-offset-[0.35em] hover:text-accent sm:text-4xl"
+            className="inline-block max-w-full font-display text-2xl text-balance break-all text-ink underline decoration-accent/40 decoration-2 underline-offset-[0.35em] hover:text-accent sm:text-4xl"
           >
             {profile.email}
           </a>
@@ -70,7 +77,7 @@ export function Contact() {
                   <Icon aria-hidden="true" size={16} />
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-xs tracking-wide text-muted">{channel.label}</span>
+                  <span className="block text-xs text-muted">{channel.label}</span>
                   <span className="block truncate text-sm text-ink">{channel.value}</span>
                 </span>
               </a>

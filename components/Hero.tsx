@@ -35,10 +35,10 @@ export function Hero() {
             <span className="block">Mohamed</span>
             <span className="block text-accent">Boukadida</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-xl leading-snug text-ink-soft sm:text-3xl">
+          <p className="mt-8 max-w-2xl text-xl text-balance leading-snug text-ink-soft sm:text-3xl">
             {profile.headline}
           </p>
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">
+          <p className="mt-5 max-w-xl text-base text-pretty leading-7 text-muted sm:text-lg">
             {profile.heroSupport}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">

@@ -18,11 +18,13 @@ export function Section({ id, index, title, intro, children }: SectionProps) {
         <Reveal>
           <div className="flex items-baseline gap-4">
             <span className="font-display text-sm text-accent">{index}</span>
-            <h2 id={titleId} className="font-display text-4xl tracking-tight text-ink md:text-5xl">
+            <h2 id={titleId} className="font-display text-4xl text-balance text-ink md:text-5xl">
               {title}
             </h2>
           </div>
-          {intro ? <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">{intro}</p> : null}
+          {intro ? (
+            <p className="mt-5 max-w-2xl text-lg text-pretty leading-8 text-muted">{intro}</p>
+          ) : null}
           <div className="mt-12">{children}</div>
         </Reveal>
       </div>

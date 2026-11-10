@@ -50,25 +50,24 @@ const ui = {
       experience: {
         index: "02",
         title: "Experience",
-        intro:
-          "Backend work in digital health, production microservices, and financial document automation.",
+        intro: "Digital-health integrations, delivery automation, and document workflows.",
       },
       projects: {
         index: "03",
         title: "Projects",
-        intro: "Mobile products, a flight-alert service, and a delivery pipeline.",
+        intro:
+          "A RAG project in progress, plus mobile products, a flight-alert service, and a delivery pipeline.",
       },
       skills: {
         index: "04",
         title: "Skills",
-        intro:
-          "Backend, APIs, microservices, and DevOps, with fullstack when a product needs an interface.",
+        intro: "Automation, integration, and the tools I use to keep data flows and deployments stable.",
       },
       credentials: {
         index: "05",
         title: "Training",
         intro:
-          "A KodeKloud course certificate and Cisco Networking Academy courses. These are completed courses, not issued AWS or CCNA exam badges.",
+          "KodeKloud course certificates and Cisco Networking Academy courses. These are completed courses, not issued AWS or CCNA exam badges.",
       },
       contact: { index: "06", title: "Contact" },
     },
@@ -117,25 +116,25 @@ const ui = {
       experience: {
         index: "02",
         title: "Erfahrung",
-        intro:
-          "Backend-Arbeit in Digital Health, Microservices in Produktion und Automatisierung von Finanzdokumenten.",
+        intro: "Integrationen in Digital Health, Lieferautomatisierung und Dokumenten-Workflows.",
       },
       projects: {
         index: "03",
         title: "Projekte",
-        intro: "Mobile Produkte, ein Flight-Alert-Service und eine Delivery-Pipeline.",
+        intro:
+          "Ein RAG-Projekt in Arbeit, dazu mobile Produkte, ein Flight-Alert-Service und eine Delivery-Pipeline.",
       },
       skills: {
         index: "04",
         title: "Kenntnisse",
         intro:
-          "Backend, APIs, Microservices und DevOps, plus Fullstack, wenn ein Produkt eine Oberfläche braucht.",
+          "Automatisierung, Integration und die Werkzeuge, mit denen ich Datenflüsse und Deployments stabil halte.",
       },
       credentials: {
         index: "05",
         title: "Weiterbildung",
         intro:
-          "Ein Kurszertifikat von KodeKloud und Kurse der Cisco Networking Academy. Das sind abgeschlossene Kurse, keine ausgestellten AWS- oder CCNA-Prüfungs-Badges.",
+          "Kurszertifikate von KodeKloud und Kurse der Cisco Networking Academy. Das sind abgeschlossene Kurse, keine ausgestellten AWS- oder CCNA-Prüfungs-Badges.",
       },
       contact: { index: "06", title: "Kontakt" },
     },
@@ -153,13 +152,13 @@ const ui = {
 } as const;
 
 const deCopy = {
-  headline: "Backend / Software Engineer · M.Sc. Informatik",
+  headline: "Backend-Entwickler · IT-Anwendungsmanagement und Prozessautomatisierung",
   heroSupport:
-    "Backend-Entwickler bei MyOnCare in München. Ich baue APIs und containerisierte Services und suche Werkstudentenstellen in Bayern.",
+    "Bei MyOnCare in München verbinde ich Wearable-Daten mit einer Digital-Health-Plattform. Ich suche eine Werkstudentenstelle in Anwendungsmanagement, Prozessautomatisierung und Geschäftsanwendungen.",
   about:
-    "Masterstudent der Informatik auf der Suche nach einer Werkstudentenstelle in Backend und Softwareentwicklung. Ich baue sichere REST-APIs, OAuth-Integrationen und containerisierte Microservices, mit Docker, CI/CD und automatisierten Tests. DevOps und Cloud-Datenplattformen interessieren mich besonders. Zurzeit arbeite ich als Backend-Entwickler bei MyOnCare in München an einer regulierten Digital-Health-Plattform.",
+    "Masterstudent der Informatik an der Universität Passau und auf der Suche nach einer Werkstudentenstelle in IT-Anwendungsmanagement, Prozessautomatisierung und Geschäftsanwendungen. Ich automatisiere Build, Test und Deployment, integriere externe Systeme, überwache laufende Services und stabilisiere Datenflüsse, in agilen Teams mit Jira und Confluence.",
   seeking:
-    "Werkstudent oder Teilzeit in Backend, Softwareentwicklung, DevOps oder Fullstack.",
+    "Werkstudentenstelle in IT-Anwendungsmanagement, Prozessautomatisierung und Geschäftsanwendungen.",
   locationDetail: "Offen für Bayern und den Raum München, hybrid oder vor Ort.",
   location: "Passau, Deutschland",
   experienceLocations: {
@@ -168,28 +167,26 @@ const deCopy = {
     finspot: "Sousse, Tunesien",
   } as Record<string, string>,
   experienceDates: {
-    myoncare: "Mai 2025 – heute",
+    myoncare: "Mai 2026 – heute",
     omnilink: "Jun 2024 – Okt 2024",
     finspot: "Mai 2023 – Sep 2023",
   } as Record<string, string>,
   experienceBullets: {
     myoncare: [
-      "Backend-Integrationen, die Wearables der Patientinnen und Patienten (Glukosemessgeräte, Aktivitätstracker) an eine Digital-Health-Plattform anbinden.",
-      "REST-APIs und Microservices zum Import, zur Verarbeitung und zur Speicherung von Gesundheitsmesswerten.",
-      "OAuth 2.0, Einwilligungen sowie Verbinden und Trennen von Konten.",
-      "Mitarbeit an der Patienten-App (React, Capacitor, TypeScript).",
-      "Fehlersuche über den gesamten Datenfluss von externen Anbietern bis in die Plattform-Datenbank, mit Git, Docker, Code Reviews und automatisierten Tests.",
+      "Backend-Integrationen, die Wearables der Patientinnen und Patienten (Glukosemessgeräte, Aktivitätstracker; Anbieter wie Abbott LibreView, Withings und Corsano) sicher an die Digital-Health-Plattform anbinden.",
+      "Den gesamten Datenfluss von externen Geräteanbietern bis in die Plattform-Datenbank untersucht und stabilisiert, mit Git, Docker, Code Reviews und automatisierten Tests.",
+      "Sichere Autorisierung mit OAuth 2.0, Einwilligungen sowie Verbinden und Trennen von Konten in einer Mehrmandanten-Plattform.",
+      "REST-APIs und Microservices, die Gesundheitsmesswerte importieren, verarbeiten und speichern, mit Blick auf Zuverlässigkeit und Nachvollziehbarkeit vom Anbieter bis zur Datenbank.",
     ],
     omnilink: [
+      "CI/CD-Pipelines mit GitHub Actions, die Build, Test und Deployment automatisieren und manuelle Release-Arbeit verringern.",
+      "Tests und Monitoring laufender Services, damit Regressionen vor dem Deploy auffallen.",
       "Backend-REST-APIs und Datenfluss zwischen Microservices in Produktion.",
-      "Services mit Docker containerisiert und CI/CD mit GitHub Actions aufgesetzt.",
-      "Tests und Monitoring, Git-Workflows und agile Lieferung.",
+      "Git-Workflows, Code Reviews und agile Zusammenarbeit, inklusive neuer DevOps-Werkzeuge.",
     ],
     finspot: [
-      "Sichere Backend-Services für die Verarbeitung von Finanzdaten und die Automatisierung von Dokumenten.",
-      "JWT-Authentifizierung und rollenbasierte Zugriffskontrolle.",
-      "Ein Microservice, der strukturierte Daten aus Finanzdokumenten für Analysen und ML-Pipelines extrahiert.",
-      "REST-Endpunkte zum Speichern und Wiederverwenden der extrahierten Datensätze.",
+      "Sichere Backend-Services für die Verarbeitung von Finanzdaten und dokumentgetriebene Automatisierung.",
+      "REST-Endpunkte und Datenhaltung, damit extrahierte Datensätze gespeichert und von nachgelagerten Services wiederverwendet werden können.",
     ],
   } as Record<string, string[]>,
   education: {
@@ -197,7 +194,6 @@ const deCopy = {
       credential: "M.Sc. Informatik",
       school: "Universität Passau, Deutschland",
       dates: "Okt 2024 – heute",
-      detail: "4. Semester",
     },
     supcom: {
       credential: "Ingenieurstudium ICT",
@@ -217,13 +213,18 @@ const deCopy = {
     Arabic: "Arabisch",
   } as Record<string, string>,
   projects: {
+    rag: {
+      summary:
+        "Ein Retrieval-Augmented-Generation-Projekt, an dem ich gerade arbeite. Es gibt noch kein öffentliches Repository, und die Architektur ist noch in Arbeit, deshalb bleibt diese Karte darauf beschränkt.",
+      highlights: [],
+    },
     "well-being": {
       summary:
-        "Eine Wellness-Plattform für Schlaftracking, Hydration und einen Chatbot. Der Mobile-Client spricht mit Flask- und Spring-Boot-Microservices hinter einem Nginx-Reverse-Proxy, mit JWT-Authentifizierung.",
+        "Studienprojekt, Januar bis Mai 2024. Microservices in Flask, Spring Boot und Flutter, mit einem LLM-Chatbot, ausprobiert von etwa 50 Personen. Der Mobile-Client erreicht die APIs über einen Nginx-Reverse-Proxy und JWT-Authentifizierung.",
       highlights: [
-        "Schlaftracking, Hydration und ein Chatbot in einem Produkt.",
-        "Flutter-Client mit Flask- und Spring-Boot-Services.",
-        "Nginx-Reverse-Proxy und JWT zwischen Client und APIs.",
+        "Schlaftracking, Hydration und ein LLM-Chatbot.",
+        "Flask, Spring Boot und Flutter, mit Nginx und JWT vor den APIs.",
+        "Ausprobiert von etwa 50 Personen.",
       ],
     },
     "coworking-hub": {
@@ -255,15 +256,13 @@ const deCopy = {
     },
   } as Record<string, { summary: string; highlights: string[] }>,
   skillTitles: {
-    languages: "Sprachen",
-    backend: "Backend",
-    frontend: "Frontend und Mobile",
+    automation: "Automatisierung und Integration",
+    languages: "Programmiersprachen",
     data: "Daten",
-    devops: "DevOps und Cloud",
-    practices: "Arbeitsweise",
-    ml: "Machine Learning",
+    tools: "Werkzeuge und Arbeitsweise",
+    also: "Außerdem",
   } as Record<string, string>,
-  skillNote: "Ergänzend, wenn ein Projekt es braucht.",
+  skillNote: "AWS-Einträge sind Kursarbeit, keine Prüfungszertifikate.",
 };
 
 export function view(locale: Locale) {

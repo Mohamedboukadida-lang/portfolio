@@ -61,10 +61,10 @@ export function ProjectShowcase({ project }: { project: Project }) {
       <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:col-span-5">
           <p className="text-sm text-accent">{status(project.status)}</p>
-          <h3 className="mt-2 font-display text-3xl tracking-tight text-ink md:text-4xl">
+          <h3 className="mt-2 font-display text-3xl text-balance text-ink md:text-4xl">
             {project.title}
           </h3>
-          <p className="mt-4 text-base leading-7 text-ink-soft">{project.summary}</p>
+          <p className="mt-4 text-base text-pretty leading-7 text-ink-soft">{project.summary}</p>
           {project.highlights.length > 0 ? (
             <ul className="mt-4 space-y-2">
               {project.highlights.map((highlight) => (
@@ -77,16 +77,18 @@ export function ProjectShowcase({ project }: { project: Project }) {
               ))}
             </ul>
           ) : null}
-          <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} stack`}>
-            {project.stack.map((item) => (
-              <li
-                key={item}
-                className="border border-line bg-white/5 px-2 py-1 text-xs tracking-wide text-ink-soft"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
+          {project.stack.length > 0 ? (
+            <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} stack`}>
+              {project.stack.map((item) => (
+                <li
+                  key={item}
+                  className="border border-line bg-white/5 px-2 py-1 text-xs text-ink-soft"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
           <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
             {project.repoUrl ? (
               <a href={project.repoUrl} className="text-link" target="_blank" rel="noreferrer">

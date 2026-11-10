@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Mohamed Boukadida, backend and software engineer in Passau";
+export const alt = "Mohamed Boukadida, backend developer in Passau";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,7 +19,7 @@ export default function OpenGraphImage() {
       }}
     >
       <div style={{ display: "flex", fontSize: 28, color: "#08384a" }}>
-        Backend / Software Engineer
+        Backend developer · process automation
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div
@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
             color: "#3d4e5c",
           }}
         >
-          APIs, microservices, and DevOps · Passau
+          Application management and process automation · Passau
         </div>
       </div>
     </div>,

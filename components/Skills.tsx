@@ -14,9 +14,11 @@ export function Skills() {
       <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group) => (
           <div key={group.id} className="border-t border-line pt-4">
-            <h3 className="font-display text-2xl text-ink">{group.title}</h3>
-            {group.note ? <p className="mt-1 text-sm text-muted">{group.note}</p> : null}
-            <p className="mt-3 text-[0.95rem] leading-7 text-ink-soft">{group.items.join(" · ")}</p>
+            <h3 className="font-display text-2xl text-balance text-ink">{group.title}</h3>
+            {group.note ? <p className="mt-1 text-sm text-pretty text-muted">{group.note}</p> : null}
+            <p className="mt-3 text-[0.95rem] text-pretty leading-7 text-ink-soft">
+              {group.items.join(" · ")}
+            </p>
           </div>
         ))}
       </div>
