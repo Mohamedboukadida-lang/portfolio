@@ -1,14 +1,15 @@
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 import { useLocale } from "@/components/LanguageProvider";
 import { FlightAlertPanel } from "@/components/visuals/FlightAlertPanel";
-import { PipelinePanel } from "@/components/visuals/PipelinePanel";
+import { FlowPanel } from "@/components/visuals/FlowPanel";
 import type { Project } from "@/content/site";
 import { view } from "@/content/view";
 
-const previewCount = 4;
+const previewCount = 3;
 
 export function ProjectShowcase({ project }: { project: Project }) {
   const { locale } = useLocale();
@@ -19,6 +20,8 @@ export function ProjectShowcase({ project }: { project: Project }) {
   const images = project.images;
   const preview = images.slice(0, previewCount);
   const hasImages = images.length > 0;
+  const hasVisual = Boolean(project.visual || project.flow) || hasImages;
+  const inProgress = project.status === "in_progress";
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -52,25 +55,50 @@ export function ProjectShowcase({ project }: { project: Project }) {
   }
 
   const active = images[index];
+  const links = [
+    ...(project.repoUrl ? [{ label: text.repository, href: project.repoUrl }] : []),
+    ...(project.liveUrl ? [{ label: text.liveSite, href: project.liveUrl }] : []),
+    ...project.extraLinks,
+  ];
 
   return (
-    <article
-      id={project.id}
-      className="scroll-mt-24 border-t border-line py-12 first:border-t-0 md:py-16"
-    >
-      <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
-        <div className="lg:col-span-5">
-          <p className="text-sm text-accent">{status(project.status)}</p>
-          <h3 className="mt-2 font-display text-3xl text-balance text-ink md:text-4xl">
-            {project.title}
+    <article id={project.id} className="project-card scroll-mt-24">
+      <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
+        <div>
+          <p
+            className={
+              inProgress
+                ? "inline-flex rounded-full border border-accent/50 px-3 py-1 text-xs font-medium text-accent"
+                : "inline-flex rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+            }
+          >
+            {status(project.status)}
+          </p>
+          <h3 className="mt-4 font-display text-3xl font-bold text-balance text-ink md:text-4xl">
+            {project.repoUrl ? (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group hover:text-accent"
+              >
+                {project.title}
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="ml-1 inline-block size-6 align-[-0.1em] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </a>
+            ) : (
+              project.title
+            )}
           </h3>
           <p className="mt-4 text-base text-pretty leading-7 text-ink-soft">{project.summary}</p>
           {project.highlights.length > 0 ? (
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-5 space-y-2.5">
               {project.highlights.map((highlight) => (
                 <li
                   key={highlight}
-                  className="relative pl-4 text-sm leading-6 text-muted before:absolute before:top-[0.6em] before:left-0 before:size-1 before:bg-accent/80 before:content-['']"
+                  className="relative pl-5 text-sm text-pretty leading-6 text-muted before:absolute before:top-[0.6em] before:left-0 before:size-1.5 before:rounded-full before:bg-accent before:content-['']"
                 >
                   {highlight}
                 </li>
@@ -78,91 +106,73 @@ export function ProjectShowcase({ project }: { project: Project }) {
             </ul>
           ) : null}
           {project.stack.length > 0 ? (
-            <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} stack`}>
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label={`${project.title} stack`}>
               {project.stack.map((item) => (
                 <li
                   key={item}
-                  className="border border-line bg-white/5 px-2 py-1 text-xs text-ink-soft"
+                  className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
                 >
                   {item}
                 </li>
               ))}
             </ul>
           ) : null}
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-            {project.repoUrl ? (
-              <a href={project.repoUrl} className="text-link" target="_blank" rel="noreferrer">
-                {text.repository}
-              </a>
-            ) : null}
-            {project.liveUrl ? (
-              <a href={project.liveUrl} className="text-link" target="_blank" rel="noreferrer">
-                {text.liveSite}
-              </a>
-            ) : null}
-            {project.extraLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          {links.length > 0 ? (
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-link inline-flex items-center gap-1"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.label}
+                  <ArrowUpRight aria-hidden="true" className="size-4" />
+                </a>
+              ))}
+            </div>
+          ) : null}
         </div>
 
-        <div className="lg:col-span-7">
-          {project.visual === "flight" ? (
-            <FlightAlertPanel />
-          ) : project.visual === "pipeline" ? (
-            <PipelinePanel />
-          ) : hasImages ? (
-            <>
-              <ul className="flex gap-3 overflow-x-auto pb-2">
-                {preview.map((image, imageIndex) => (
-                  <li key={image.src} className="shrink-0">
-                    <button
-                      type="button"
-                      className="shot block overflow-hidden border border-line bg-black/30"
-                      aria-label={`Open screen: ${image.alt}`}
-                      onClick={() => openAt(imageIndex)}
-                    >
-                      <Image
-                        src={image.src}
-                        alt=""
-                        width={image.width}
-                        height={image.height}
-                        sizes="180px"
-                        className="h-72 w-auto md:h-80"
-                      />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              {images.length > preview.length ? (
-                <button type="button" className="text-link mt-3" onClick={() => openAt(0)}>
-                  {text.allScreens.replace("{count}", String(images.length))}
+        {hasVisual ? (
+          <div>
+            {project.visual === "flight" ? (
+              <FlightAlertPanel />
+            ) : project.flow ? (
+              <FlowPanel flow={project.flow} />
+            ) : (
+              <div>
+                <ul className="grid grid-cols-3 gap-2 sm:gap-3">
+                  {preview.map((image, imageIndex) => (
+                    <li key={image.src}>
+                      <button
+                        type="button"
+                        className="shot block w-full overflow-hidden rounded-lg border border-line bg-black/30"
+                        aria-label={`Open screen: ${image.alt}`}
+                        onClick={() => openAt(imageIndex)}
+                      >
+                        <Image
+                          src={image.src}
+                          alt=""
+                          width={image.width}
+                          height={image.height}
+                          sizes="(min-width: 1024px) 180px, 30vw"
+                          className="aspect-[9/19] h-auto w-full object-cover object-top"
+                        />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <button type="button" className="text-link mt-4" onClick={() => openAt(0)}>
+                  {images.length > preview.length
+                    ? text.allScreens.replace("{count}", String(images.length))
+                    : text.openScreens}
                 </button>
-              ) : (
-                <button type="button" className="text-link mt-3" onClick={() => openAt(0)}>
-                  {text.openScreens}
-                </button>
-              )}
-            </>
-          ) : (
-            <div
-              className="flex min-h-56 items-end border border-dashed border-line bg-white/5 p-6 md:min-h-72"
-              aria-hidden="true"
-            >
-              <p className="font-display text-4xl tracking-tight text-ink/25">
-                {status(project.status)}
-              </p>
-            </div>
-          )}
-        </div>
+              </div>
+            )}
+          </div>
+        ) : null}
       </div>
 
       {hasImages ? (

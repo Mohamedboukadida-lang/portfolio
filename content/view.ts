@@ -38,9 +38,9 @@ const ui = {
     otherRepos: "Other repositories are on",
     github: "GitHub",
     nav: [
-      { href: "#about", label: "About" },
       { href: "#experience", label: "Experience" },
       { href: "#projects", label: "Projects" },
+      { href: "#about", label: "About" },
       { href: "#skills", label: "Skills" },
       { href: "#credentials", label: "Training" },
       { href: "#contact", label: "Contact" },
@@ -56,12 +56,13 @@ const ui = {
         index: "03",
         title: "Projects",
         intro:
-          "A RAG project in progress, plus mobile products, a flight-alert service, and a delivery pipeline.",
+          "An agentic RAG assistant and a serverless AWS pipeline in progress, plus mobile products and a flight-alert service.",
       },
       skills: {
         index: "04",
         title: "Skills",
-        intro: "Automation, integration, and the tools I use to keep data flows and deployments stable.",
+        intro:
+          "Automation, integration, and the tools I use to keep data flows and deployments stable.",
       },
       credentials: {
         index: "05",
@@ -104,9 +105,9 @@ const ui = {
     otherRepos: "Weitere Repositories gibt es auf",
     github: "GitHub",
     nav: [
-      { href: "#about", label: "Über mich" },
       { href: "#experience", label: "Erfahrung" },
       { href: "#projects", label: "Projekte" },
+      { href: "#about", label: "Über mich" },
       { href: "#skills", label: "Kenntnisse" },
       { href: "#credentials", label: "Weiterbildung" },
       { href: "#contact", label: "Kontakt" },
@@ -122,7 +123,7 @@ const ui = {
         index: "03",
         title: "Projekte",
         intro:
-          "Ein RAG-Projekt in Arbeit, dazu mobile Produkte, ein Flight-Alert-Service und eine Delivery-Pipeline.",
+          "Ein agentischer RAG-Assistent und eine serverlose AWS-Pipeline in Arbeit, dazu mobile Produkte und ein Flight-Alert-Service.",
       },
       skills: {
         index: "04",
@@ -215,8 +216,21 @@ const deCopy = {
   projects: {
     rag: {
       summary:
-        "Ein Retrieval-Augmented-Generation-Projekt, an dem ich gerade arbeite. Es gibt noch kein öffentliches Repository, und die Architektur ist noch in Arbeit, deshalb bleibt diese Karte darauf beschränkt.",
-      highlights: [],
+        "Ein Frage-Antwort-Agent über AWS-Dokumentation. Er findet Passagen per hybrider Suche, antwortet über eine begrenzte Tool-Calling-Schleife, belegt jede Aussage mit einer Quelle und lehnt ab, wenn die Dokumente die Antwort nicht enthalten. Läuft lokal mit Ollama und PostgreSQL mit pgvector, ohne API-Key.",
+      highlights: [
+        "Hybride Suche: Vektor- und Keyword-Suche, per Reciprocal Rank Fusion zusammengeführt und neu gerankt.",
+        "Guardrails: Eingabeprüfung, Injection-Scan der gefundenen Texte und Quellenprüfung der Antworten.",
+        "Ein Eval-Set mit Retrieval- und Antwortmetriken als CI-Gate. Ergebnisse erscheinen erst nach einem Lauf auf einem echten Korpus.",
+      ],
+    },
+    "aws-ingestion": {
+      summary:
+        "Eine Event-Ingestion-Pipeline auf AWS in eu-central-1, gebaut mit Terraform. Authentifizierte Anfragen werden in eine Queue gestellt, verarbeitet und gespeichert, ein täglicher Job aggregiert sie. Sie läuft nur mit synthetischen Events.",
+      highlights: [
+        "Terraform Plan und Apply laufen in GitHub Actions über OIDC-Rollen, ohne gespeicherte AWS-Schlüssel.",
+        "Eine Dead-Letter-Queue mit Redrive-Skript, dazu Dashboard, Alarme und API-Access-Logs.",
+        "Designentscheidungen und Fehler sind in DECISIONS.md und WHAT_BROKE.md dokumentiert.",
+      ],
     },
     "well-being": {
       summary:
@@ -243,15 +257,6 @@ const deCopy = {
         "Ein Deal-Alert ab 150 € oder weniger, ein Drop-Alert ab 15 € oder 10 %.",
         "Tarife kommen von Travelpayouts, der letzte Preis liegt in Redis.",
         "GitHub Actions führt die Prüfung alle 12 Stunden aus.",
-      ],
-    },
-    "cicd-pipeline-lab": {
-      summary:
-        "Ein Beispiel-Backend mit einer durchgängigen Delivery-Pipeline. GitHub Actions prüft den Code, führt Tests aus, baut ein Docker-Image und deployt es nach Staging. Das Image entsteht erst nach grünen Tests, und der vorherige Tag bleibt für ein Rollback liegen.",
-      highlights: [
-        "Lint, Test, Image-Build und Staging-Deploy laufen als getrennte Jobs.",
-        "Der Image-Build wartet auf einen grünen Test-Job.",
-        "Staging behält den vorherigen Tag, ein Rollback ist ein erneutes Deploy.",
       ],
     },
   } as Record<string, { summary: string; highlights: string[] }>,

@@ -25,7 +25,14 @@ export type ExternalLink = {
   href: string;
 };
 
-export type ProjectVisual = "flight" | "pipeline";
+export type ProjectVisual = "flight";
+
+export type ProjectFlow = {
+  title: string;
+  badge: string;
+  lanes: { title: string; steps: string[] }[];
+  note: string;
+};
 
 export type Project = {
   id: string;
@@ -40,6 +47,8 @@ export type Project = {
   highlights: string[];
   /** Designed interface when the project has no screenshot files. */
   visual?: ProjectVisual;
+  /** Architecture diagram taken from the project's README. */
+  flow?: ProjectFlow;
 };
 
 export type ExperienceItem = {
@@ -255,16 +264,78 @@ export const heroImages: ProjectImage[] = [
 export const projects: Project[] = [
   {
     id: "rag",
-    title: "RAG",
+    title: "ragent: agentic RAG over AWS docs",
     status: "in_progress",
     summary:
-      "A retrieval-augmented generation project I am building now. There is no public repository yet, and the architecture is still in progress, so this card stays limited to that.",
-    stack: [],
-    repoUrl: null,
+      "A question-answering agent over AWS documentation. It retrieves passages with hybrid search, answers through a bounded tool-calling loop, cites every claim, and refuses when the documents do not hold the answer. It runs locally on Ollama and PostgreSQL with pgvector, with no API key.",
+    stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Ollama", "Docker", "GitHub Actions"],
+    repoUrl: "https://github.com/Mohamedboukadida-lang/agentic",
     liveUrl: null,
     extraLinks: [],
     images: [],
-    highlights: [],
+    flow: {
+      title: "ragent",
+      badge: "Local · no API key",
+      lanes: [
+        {
+          title: "Ingestion",
+          steps: ["Documents", "Loader + chunker", "Embedder", "PostgreSQL + pgvector"],
+        },
+        {
+          title: "Answering",
+          steps: ["ragent ask / FastAPI", "Agent loop ↔ Ollama", "Tools", "Hybrid retriever"],
+        },
+      ],
+      note: "Both paths share one store. An eval runner checks retrieval and answers in CI.",
+    },
+    highlights: [
+      "Hybrid retrieval: vector and keyword search merged with reciprocal rank fusion, then reranked.",
+      "Guardrails: input checks, an injection scan of retrieved text, and citation checks on answers.",
+      "An eval set with retrieval and answer metrics, gated in CI. Results stay unpublished until it runs on a real corpus.",
+    ],
+  },
+  {
+    id: "aws-ingestion",
+    title: "Serverless event ingestion on AWS",
+    status: "in_progress",
+    summary:
+      "An event ingestion pipeline on AWS in eu-central-1, built with Terraform. Authenticated requests are queued, processed, and stored, and a daily job aggregates them. It runs on synthetic events only.",
+    stack: [
+      "Terraform",
+      "Python",
+      "AWS Lambda",
+      "API Gateway",
+      "Cognito",
+      "SQS",
+      "DynamoDB",
+      "S3",
+      "EventBridge",
+      "GitHub Actions",
+    ],
+    repoUrl: "https://github.com/Mohamedboukadida-lang/aws-ingestion",
+    liveUrl: null,
+    extraLinks: [],
+    images: [],
+    flow: {
+      title: "aws-ingestion",
+      badge: "Terraform · eu-central-1",
+      lanes: [
+        {
+          title: "Ingest",
+          steps: ["Client", "API Gateway + Cognito JWT", "Lambda ingest", "SQS + DLQ"],
+        },
+        {
+          title: "Process",
+          steps: ["Lambda consumer", "DynamoDB + S3", "EventBridge daily", "Aggregation Lambda"],
+        },
+      ],
+      note: "Synthetic events only. The stack is destroyed after each session.",
+    },
+    highlights: [
+      "Terraform plan and apply run in GitHub Actions through OIDC roles, with no stored AWS keys.",
+      "A dead-letter queue with a redrive script, plus a dashboard, alarms, and API access logs.",
+      "Design choices and failures are written up in DECISIONS.md and WHAT_BROKE.md.",
+    ],
   },
   {
     id: "well-being",
@@ -325,24 +396,6 @@ export const projects: Project[] = [
       "A deal alert fires at €150 or below, and a drop alert at €15 or 10%.",
       "Fares come from Travelpayouts, and the last price is kept in Redis.",
       "GitHub Actions runs the check every 12 hours.",
-    ],
-  },
-  {
-    id: "cicd-pipeline-lab",
-    title: "CI/CD Pipeline Lab",
-    status: "shipped",
-    summary:
-      "A sample backend service with an end-to-end delivery pipeline. GitHub Actions lints the code, runs the tests, builds a Docker image, and deploys that image to staging. The image is built only after the tests pass, and the previous tag stays available so a rollback is a redeploy.",
-    stack: ["Docker", "GitHub Actions", "CI/CD", "Linux", "AWS", "Kubernetes"],
-    repoUrl: null,
-    liveUrl: null,
-    extraLinks: [],
-    images: [],
-    visual: "pipeline",
-    highlights: [
-      "Lint, test, image build, and staging deploy run as separate jobs.",
-      "The image build waits until the test job is green.",
-      "Staging keeps the previous tag, so a rollback redeploys that image.",
     ],
   },
 ];
