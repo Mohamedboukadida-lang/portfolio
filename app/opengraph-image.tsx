@@ -13,32 +13,43 @@ export default function OpenGraphImage() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        backgroundColor: "#f3f6f7",
-        color: "#102029",
+        backgroundColor: "#070b10",
+        color: "#eef6f4",
         padding: "72px",
       }}
     >
-      <div style={{ display: "flex", fontSize: 28, color: "#08384a" }}>
+      <div style={{ display: "flex", fontSize: 28, color: "#5eead4" }}>
         Backend developer · process automation
       </div>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div
           style={{
             display: "flex",
-            fontSize: 76,
+            flexDirection: "column",
+            fontSize: 112,
             fontWeight: 700,
-            letterSpacing: -2,
-            lineHeight: 1.02,
+            letterSpacing: -3,
+            lineHeight: 0.9,
           }}
         >
-          Mohamed Boukadida
+          <span>Mohamed</span>
+          <span>Boukadida</span>
         </div>
+        <div
+          style={{
+            display: "flex",
+            marginTop: 32,
+            width: 96,
+            height: 4,
+            backgroundColor: "#5eead4",
+          }}
+        />
         <div
           style={{
             display: "flex",
             marginTop: 28,
             fontSize: 30,
-            color: "#3d4e5c",
+            color: "#8ea39d",
           }}
         >
           Application management and process automation · Passau

@@ -43,53 +43,26 @@ body {
   font-family: var(--font-body), "Segoe UI", sans-serif;
 }
 
-.atmosphere {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  background: #070b10;
+html {
+  scrollbar-color: var(--line) var(--paper);
 }
 
-.atmosphere::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background:
-    radial-gradient(ellipse 36% 32% at 12% 8%, rgba(94, 234, 212, 0.28), transparent 62%),
-    radial-gradient(ellipse 32% 36% at 88% 0%, rgba(56, 189, 248, 0.2), transparent 58%),
-    radial-gradient(ellipse 42% 36% at 70% 92%, rgba(45, 212, 191, 0.16), transparent 60%),
-    radial-gradient(ellipse 28% 24% at 30% 70%, rgba(14, 165, 233, 0.12), transparent 64%);
-  filter: blur(8px);
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-.atmosphere::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-  background-image:
-    linear-gradient(rgba(238, 246, 244, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(238, 246, 244, 0.035) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, black, transparent 75%);
+::-webkit-scrollbar-track {
+  background: var(--paper);
 }
 
-.site-shell {
-  position: relative;
-  z-index: 1;
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border: 2px solid var(--paper);
 }
 
-.site-header::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  right: 0;
-  left: 0;
-  height: 2.75rem;
-  pointer-events: none;
-  background: linear-gradient(to bottom, var(--paper), transparent);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-deep);
 }
 
 ::selection {
@@ -171,23 +144,28 @@ body {
 
 .lang-switch {
   display: flex;
-  border: 1px solid var(--line);
-  background: rgba(7, 11, 16, 0.45);
+  align-items: center;
 }
 
 .lang-btn {
-  min-height: 2.25rem;
-  min-width: 2.4rem;
-  padding: 0.25rem 0.45rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  min-height: 2.75rem;
+  min-width: 2.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--muted);
 }
 
+.lang-btn + .lang-btn {
+  border-left: 1px solid var(--line);
+}
+
+.lang-btn:hover {
+  color: var(--ink);
+}
+
 .lang-btn[aria-pressed="true"] {
-  background: var(--accent);
-  color: var(--accent-ink);
+  color: var(--ink);
 }
 
 .nav-link {
@@ -253,15 +231,14 @@ body {
   border-radius: 999px;
   object-fit: cover;
   object-position: center 18%;
-  box-shadow:
-    0 0 0 1px rgba(94, 234, 212, 0.45),
-    0 18px 40px -24px rgba(94, 234, 212, 0.7);
+  outline: 2px solid var(--accent);
+  outline-offset: 0.6rem;
 }
 
 @media (min-width: 1024px) {
   .portrait {
-    width: 15.5rem;
-    height: 15.5rem;
+    width: 18rem;
+    height: 18rem;
   }
 }
 
@@ -277,29 +254,7 @@ body {
   border-color: var(--accent);
 }
 
-.marquee {
-  overflow: hidden;
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 2.75rem;
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .atmosphere::before {
-    animation: mesh-drift 22s ease-in-out infinite alternate;
-  }
-
-  .hero-rise {
-    animation: hero-rise 0.7s ease both;
-  }
-
-  .marquee-track {
-    animation: marquee 32s linear infinite;
-  }
-
   .reveal {
     transition:
       opacity 0.7s ease,
@@ -318,15 +273,6 @@ body {
   }
 }
 
-@keyframes mesh-drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(-4%, 3%, 0) scale(1.08);
-  }
-}
-
 @keyframes section-fade {
   from {
     opacity: 0;
@@ -335,26 +281,6 @@ body {
   to {
     opacity: 1;
     transform: none;
-  }
-}
-
-@keyframes hero-rise {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }
 
@@ -380,9 +306,25 @@ body {
 .panel {
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 1.25rem;
-  background: rgba(238, 246, 244, 0.04);
-  box-shadow: 0 24px 50px -36px rgba(0, 0, 0, 0.8);
+  border-radius: 0.75rem;
+  background: var(--paper);
+}
+
+.skill-card {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: rgba(238, 246, 244, 0.025);
+}
+
+.project-card {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-card:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .alert-row {
@@ -392,9 +334,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .shot,
   .reveal,
-  .reveal-scroll,
-  .marquee-track,
-  .atmosphere::before {
+  .reveal-scroll {
     animation: none;
     transition: none;
   }

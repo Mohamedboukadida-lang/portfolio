@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Outfit } from "next/font/google";
+import { Outfit, Pliant } from "next/font/google";
 import Script from "next/script";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { profile } from "@/content/site";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const display = Pliant({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -84,8 +84,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           })();`}
         </Script>
         <LanguageProvider>
-          <div className="atmosphere" aria-hidden="true" />
-          <div className="site-shell">{children}</div>
+          {children}
         </LanguageProvider>
       </body>
     </html>
