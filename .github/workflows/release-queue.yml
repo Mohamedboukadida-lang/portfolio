@@ -1,0 +1,40 @@
+name: Release queue
+
+# Moves main forward by one commit from the release-queue branch on each run.
+# Times are UTC (Berlin is UTC+1 in winter).
+on:
+  schedule:
+    - cron: "0 11 * * 6"
+    - cron: "0 18 * * 6"
+    - cron: "0 11 * * 0"
+    - cron: "0 20 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-queue
+  cancel-in-progress: false
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push the next queued commit to main
+        run: |
+          if ! git fetch origin release-queue:refs/remotes/origin/release-queue; then
+            echo "No release-queue branch. Nothing to do."
+            exit 0
+          fi
+          next=$(git rev-list --reverse --ancestry-path origin/main..origin/release-queue | head -n 1)
+          if [ -z "$next" ]; then
+            echo "Queue is empty. Nothing to do."
+            exit 0
+          fi
+          git log -1 --format='Releasing %h %s' "$next"
+          git push origin "$next:refs/heads/main"
