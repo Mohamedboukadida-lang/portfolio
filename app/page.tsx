@@ -37,9 +37,9 @@ export default function HomePage() {
       <Header />
       <main id="content">
         <Hero />
-        <About />
         <Experience />
         <Projects />
+        <About />
         <Skills />
         <Credentials />
         <Contact />

@@ -1,13 +1,12 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/BrandIcons";
 import { useEffect, useState } from "react";
 import { useLocale } from "@/components/LanguageProvider";
 import { profile } from "@/content/site";
 import { view } from "@/content/view";
 
-const sectionIds = ["about", "experience", "projects", "skills", "credentials", "contact"];
+const sectionIds = ["experience", "projects", "about", "skills", "credentials", "contact"];
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -46,20 +45,17 @@ export function Header() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-30 border-b border-line bg-paper/75 backdrop-blur-md">
+    <header className="site-header sticky top-0 z-30 border-b border-line bg-paper">
       <a href="#content" className="skip-link">
         {text.skip}
       </a>
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-5 py-3 md:px-8">
-        <a href="#top" className="font-display text-sm tracking-[0.14em] text-ink">
-          MB
-          <span className="sr-only">
-            {" "}
-            {profile.name}, {text.backToTop}
-          </span>
+        <a href="#top" className="text-sm font-semibold text-ink">
+          {profile.name}
+          <span className="sr-only">, {text.backToTop}</span>
         </a>
 
-        <nav aria-label="Primary" className="ml-6 hidden items-center gap-4 xl:flex">
+        <nav aria-label="Primary" className="mx-auto hidden items-center gap-5 lg:flex">
           {text.nav.map((item) => (
             <a
               key={item.href}
@@ -72,25 +68,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
-          <a
-            href={profile.github}
-            className="icon-btn inline-flex"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <GithubIcon />
-          </a>
-          <a
-            href={profile.linkedin}
-            className="icon-btn inline-flex"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <LinkedinIcon />
-          </a>
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
           <div role="group" aria-label={text.language} className="lang-switch">
             <button
               type="button"
@@ -111,7 +89,7 @@ export function Header() {
           </div>
           <button
             type="button"
-            className="icon-btn inline-flex xl:hidden"
+            className="icon-btn inline-flex lg:hidden"
             aria-expanded={open}
             aria-controls="site-nav"
             onClick={() => setOpen((value) => !value)}
@@ -126,7 +104,7 @@ export function Header() {
         id="site-nav"
         aria-label="Primary"
         hidden={!open}
-        className="border-t border-line bg-paper px-5 py-3 xl:hidden"
+        className="border-t border-line bg-paper px-5 py-3 lg:hidden"
       >
         {text.nav.map((item) => (
           <a

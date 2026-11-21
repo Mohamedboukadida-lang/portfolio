@@ -4,54 +4,48 @@ import Image from "next/image";
 import { useLocale } from "@/components/LanguageProvider";
 import { view } from "@/content/view";
 
-const track = [
-  "APIs",
-  "Microservices",
-  "Docker",
-  "CI/CD",
-  "Kubernetes",
-  "Spring Boot",
-  "PostgreSQL",
-  "GitHub Actions",
-];
+const chips = ["Docker", "CI/CD", "APIs"];
 
 export function Hero() {
   const { locale } = useLocale();
   const { text, profile } = view(locale);
-  const loop = [...track, ...track];
+  const role = profile.headline.split("·")[0]?.trim() || profile.headline;
+  const support = profile.heroSupport.split(/(?<=\.)\s/)[0] ?? profile.heroSupport;
 
   return (
     <section id="top" className="scroll-mt-20" aria-labelledby="hero-name">
-      <div className="mx-auto flex min-h-[calc(100svh-4.25rem)] max-w-6xl flex-col justify-between px-5 py-12 md:px-8 md:py-16">
-        <div className="hero-rise grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
-          <div className="max-w-4xl">
-          <p className="text-sm tracking-wide text-muted">
-            {profile.location}, {profile.locationDetail}
-          </p>
-          <h1
-            id="hero-name"
-            className="mt-5 font-display text-[3.1rem] leading-[0.88] tracking-[-0.055em] text-ink min-[400px]:text-6xl sm:text-7xl lg:text-8xl"
-          >
-            <span className="block">Mohamed</span>
-            <span className="block text-accent">Boukadida</span>
-          </h1>
-          <p className="mt-8 max-w-2xl text-xl text-balance leading-snug text-ink-soft sm:text-3xl">
-            {profile.headline}
-          </p>
-          <p className="mt-5 max-w-xl text-base text-pretty leading-7 text-muted sm:text-lg">
-            {profile.heroSupport}
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#projects" className="button-primary">
-              {text.viewProjects}
-            </a>
-            <a href="#contact" className="button-secondary">
-              {text.contact}
-            </a>
-            <a href={profile.resumePath} className="button-text" download>
-              {text.resume}
-            </a>
-          </div>
+      <div className="mx-auto max-w-6xl px-5 pt-12 pb-6 md:px-8 md:pt-16">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+          <div>
+            <h1
+              id="hero-name"
+              className="font-display text-[clamp(3.25rem,9.7vw,7.75rem)] leading-[0.92] font-bold text-balance text-ink"
+            >
+              <span className="block">Mohamed</span>
+              <span className="block">Boukadida</span>
+            </h1>
+            <span className="mt-5 block h-0.5 w-16 bg-accent" aria-hidden="true" />
+            <p className="mt-5 text-2xl text-ink sm:text-3xl">{role}</p>
+            <p className="mt-3 max-w-xl text-base text-pretty leading-7 text-muted">{support}</p>
+            <ul
+              className="mt-6 flex flex-wrap gap-x-5 gap-y-2"
+              aria-label={text.sections.skills.title}
+            >
+              {chips.map((chip) => (
+                <li key={chip} className="flex items-center gap-2 text-sm text-ink-soft">
+                  <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+                  {chip}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              <a href="#contact" className="text-link">
+                {text.contact}
+              </a>
+              <a href={profile.resumePath} className="text-link" download>
+                {text.resume}
+              </a>
+            </div>
           </div>
           <Image
             src="/portrait.webp"
@@ -59,17 +53,22 @@ export function Hero() {
             width={400}
             height={400}
             priority
-            className="portrait order-first lg:order-none"
+            className="portrait mx-auto lg:mx-0"
           />
         </div>
-        <div className="marquee mt-14 border-t border-line pt-4" aria-hidden="true">
-          <div className="marquee-track">
-            {loop.map((item, index) => (
-              <span key={`${item}-${index}`} className="font-display text-lg text-ink-soft">
-                {item}
-              </span>
-            ))}
-          </div>
+        <div className="mt-16 grid gap-6 border-t border-line pt-5 sm:grid-cols-2">
+          <a
+            href="#experience"
+            className="font-display text-4xl font-bold text-ink hover:text-accent sm:text-5xl"
+          >
+            {text.sections.experience.title}
+          </a>
+          <a
+            href="#projects"
+            className="font-display text-4xl font-bold text-ink hover:text-accent sm:text-5xl"
+          >
+            {text.sections.projects.title}
+          </a>
         </div>
       </div>
     </section>
