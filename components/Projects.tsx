@@ -12,8 +12,8 @@ export function Projects() {
   const section = text.sections.projects;
 
   return (
-    <Section id="projects" index={section.index} title={section.title} intro={section.intro}>
-      <div className="-mt-4">
+    <Section id="projects" title={section.title} intro={section.intro}>
+      <div>
         {projects.map((project) => (
           <ProjectShowcase key={project.id} project={project} />
         ))}

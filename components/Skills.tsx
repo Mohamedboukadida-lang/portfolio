@@ -10,15 +10,24 @@ export function Skills() {
   const section = text.sections.skills;
 
   return (
-    <Section id="skills" index={section.index} title={section.title} intro={section.intro}>
-      <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    <Section id="skills" title={section.title} intro={section.intro}>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group) => (
-          <div key={group.id} className="border-t border-line pt-4">
-            <h3 className="font-display text-2xl text-balance text-ink">{group.title}</h3>
-            {group.note ? <p className="mt-1 text-sm text-pretty text-muted">{group.note}</p> : null}
-            <p className="mt-3 text-[0.95rem] text-pretty leading-7 text-ink-soft">
-              {group.items.join(" · ")}
-            </p>
+          <div key={group.id} className="skill-card">
+            <h3 className="font-display text-xl font-bold text-balance text-ink">{group.title}</h3>
+            {group.note ? (
+              <p className="mt-1 text-sm text-pretty text-muted">{group.note}</p>
+            ) : null}
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>

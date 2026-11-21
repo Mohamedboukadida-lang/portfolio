@@ -11,7 +11,9 @@ export function Contact() {
   const { text, profile } = view(locale);
   const section = text.sections.contact;
   const subject =
-    locale === "de" ? "Werkstudentenstelle Anwendungsmanagement" : "Working student — application management";
+    locale === "de"
+      ? "Werkstudentenstelle Anwendungsmanagement"
+      : "Working student — application management";
   const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(subject)}`;
 
   const channels = [
@@ -42,7 +44,6 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      index={section.index}
       title={section.title}
       intro={`${profile.seeking} ${profile.location}. ${profile.locationDetail}`}
     >

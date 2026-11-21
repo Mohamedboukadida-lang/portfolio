@@ -11,8 +11,8 @@ export function Experience() {
   const section = text.sections.experience;
 
   return (
-    <Section id="experience" index={section.index} title={section.title} intro={section.intro}>
-      <div className="relative space-y-12 border-l border-line pl-8">
+    <Section id="experience" title={section.title} intro={section.intro}>
+      <div className="border-t border-line">
         {experience.map((item) => (
           <ExperienceItem key={item.id} item={item} />
         ))}

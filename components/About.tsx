@@ -10,18 +10,22 @@ export function About() {
   const section = text.sections.about;
 
   return (
-    <Section id="about" index={section.index} title={section.title}>
+    <Section id="about" title={section.title}>
       <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div>
           <p className="max-w-xl text-lg text-pretty leading-8 text-ink-soft">{profile.about}</p>
-          <p className="mt-6 max-w-xl text-base text-pretty leading-7 text-muted">{profile.seeking}</p>
+          <p className="mt-6 max-w-xl text-base text-pretty leading-7 text-muted">
+            {profile.seeking}
+          </p>
           <p className="mt-3 text-sm text-muted">
             {profile.location}. {profile.locationDetail}
           </p>
         </div>
         <div className="grid gap-10">
           <div>
-            <h3 className="font-display text-2xl text-balance text-ink">{text.education}</h3>
+            <h3 className="font-display text-2xl font-bold text-balance text-ink">
+              {text.education}
+            </h3>
             <ol className="mt-4 border-t border-line">
               {education.map((item) => (
                 <li key={item.id} className="border-b border-line py-4">
@@ -34,7 +38,9 @@ export function About() {
             </ol>
           </div>
           <div>
-            <h3 className="font-display text-2xl text-balance text-ink">{text.spokenLanguages}</h3>
+            <h3 className="font-display text-2xl font-bold text-balance text-ink">
+              {text.spokenLanguages}
+            </h3>
             <ul className="mt-4 border-t border-line">
               {languages.map((language) => (
                 <li
